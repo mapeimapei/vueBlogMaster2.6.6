@@ -26,5 +26,6 @@ npm run e2e
 # run all tests
 npm test
 ```
+Licensed under the [MIT license](https://github.com/mapeimapei/vueBlogMaster2.6.6/blob/master/LICENSE).
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
