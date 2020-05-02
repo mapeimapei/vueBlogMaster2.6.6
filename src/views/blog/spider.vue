@@ -15,7 +15,7 @@ export default {
 
   methods:{
     startSpider(){
-      let apiUrl = "/startSpider2"
+      let apiUrl = "spider/startSpider"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

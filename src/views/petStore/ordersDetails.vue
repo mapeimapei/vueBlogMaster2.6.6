@@ -138,12 +138,12 @@ export default {
 
     deleteRow(obj){
       let _obj = {
-        "user_id":this.user.id,
+        "userid":this.user.id,
         "orderid":obj.orderid,
         "productid":obj.productid,
       }
 
-      let apiUrl = "/deleteProductInOrderDetails"
+      let apiUrl = "shop/deleteProductInOrderDetails"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -174,7 +174,7 @@ export default {
     },
 
     getOrdersDetailsById(){
-      let apiUrl = "/getOrdersDetailsById"
+      let apiUrl = "shop/getOrdersDetailsById"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -182,7 +182,7 @@ export default {
 
       let obj = {
         "orderid":this.orderid,
-        "user_id":this.user.id
+        "userid":this.user.id
       }
 
       this.$axios.post(apiUrl,obj).then((data) => {

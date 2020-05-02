@@ -141,11 +141,11 @@ export default {
 
     makeOrderFn(){
       let obj = {
-        "user_id":this.user.id,
+        "userid":this.user.id,
         "productList":[...this.multipleSelection]
       }
 
-      let apiUrl = "/addOrder"
+      let apiUrl = "shop/addOrder"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -187,7 +187,7 @@ export default {
 
             let obj = {
               "productids":[...productids],
-              "user_id":this.user.id
+              "userid":this.user.id
             }
             //清空
             if(productids === "clear"){
@@ -196,7 +196,7 @@ export default {
                obj.productids.push(item.productid)
               })
             }
-            let apiUrl = "/deleteCart"
+            let apiUrl = "shop/deleteCart"
             let loadingMask = this.$loading({
               lock: true,
               background: 'rgba(0, 0, 0, 0.5)'
@@ -237,7 +237,7 @@ export default {
 
 
     getCartList(){
-      let apiUrl = "/getCartList/" + this.user.id
+      let apiUrl = "shop/getCartList/" + this.user.id
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

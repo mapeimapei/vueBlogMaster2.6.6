@@ -96,10 +96,10 @@ export default {
         }).then(() => {
       
           let obj = {
-            "user_id":this.user.id,
+            "userid":this.user.id,
             "orderid":id
           }
-          let apiUrl = "/deleteOrder"
+          let apiUrl = "shop/deleteOrder"
           let loadingMask = this.$loading({
             lock: true,
             background: 'rgba(0, 0, 0, 0.5)'
@@ -142,7 +142,7 @@ export default {
     },
 
     getOrderList(){
-      let apiUrl = "/getOrderList/" + this.user.id
+      let apiUrl = "shop/getOrderList/" + this.user.id
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

@@ -94,11 +94,11 @@ export default {
 
     makeOrderFn(row){
       let obj = {
-        "user_id":this.user.id,
+        "userid":this.user.id,
         "productList":[row]
       }
 
-      let apiUrl = "/addOrder"
+      let apiUrl = "shop/addOrder"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -133,10 +133,10 @@ export default {
       let obj = {
         "productid":row.productid,
         "quantity":row.quantity,
-        "user_id":this.user.id
+        "userid":this.user.id
       }
       console.log(obj)
-      let apiUrl = "/addCart"
+      let apiUrl = "shop/addCart"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -167,7 +167,7 @@ export default {
 
     //获取商品列表信息
     getProducts(){
-      let apiUrl = "/getProducts"
+      let apiUrl = "shop/getProducts"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

@@ -93,7 +93,7 @@ export default {
 		},
 
 		deletData(id){
-			let apiUrl = "/deleteSingle"
+			let apiUrl = "cms/deleteSingle"
 			let loadingMask = this.$loading({
 			  lock: true,
 			  background: 'rgba(0, 0, 0, 0.5)'
@@ -129,7 +129,7 @@ export default {
 
 		//初始化
     getPosts(){
-      let apiUrl = "/getPosts"
+      let apiUrl = "cms/getPosts"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

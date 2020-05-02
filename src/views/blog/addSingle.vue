@@ -54,7 +54,7 @@ export default {
 		getSingle(){
 			if(!this.postId) return   // this.postId值为空，就跳出getSingle()，直接执行新增addSingle()。不为空，就是编辑，会执行下面的代码
 			
-			let apiUrl = "/getSingleById/" + this.postId
+			let apiUrl = "cms/getSingleById/" + this.postId
 			let loadingMask = this.$loading({
 			  lock: true,
 			  background: 'rgba(0, 0, 0, 0.5)'
@@ -89,7 +89,7 @@ export default {
 		  this.addArticle.user_id = this.user.id
 		  this.addArticle.post_id = this.postId	
 		  let obj = {...this.addArticle}
-		  let apiUrl = "/addSingle"
+		  let apiUrl = "cms/addSingle"
 		 // var formData = new FormData();
 		  //formData.append('requestJson', JSON.stringify(obj));
 		  let loadingMask = this.$loading({
@@ -100,20 +100,20 @@ export default {
 		    loadingMask.close();
 		    if(!!data && data.resultCode ==="20000"){
 		      this.$notify({
-		        message: '文章添加成功。',
+		        message: '成功。',
 		        type: 'success'
 		      })
 		      this.$router.push('/index')
 		    }else{
 		      this.$notify({
-		        message: '文章添加失败。',
+		        message: '失败。',
 		        type: 'warning'
 		      });
 		    }
 		  }).catch((err) => {
 		    loadingMask.close();
 		    this.$notify({
-		      message: '文章添加接口报错。',
+		      message: '接口异常',
 		      type: 'warning'
 		    });
 		  });
