@@ -1,4 +1,4 @@
-# awesome-python3-webapp的后台管理web项目
+# awesome-flask-webapp的后台管理web项目
 
 > A Vue.js project
 
