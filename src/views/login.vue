@@ -51,7 +51,7 @@ export default {
 
     loginFn(){
       let obj = {...this.loginData}
-      let apiUrl = "/login"
+      let apiUrl = "/cms/login"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
