@@ -23,6 +23,7 @@ import '@/assets/css/global.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/main.css'
 
+const Base64 = require('js-base64').Base64
 
 if(!!ut.dev){
   require('@/constants/mock.js')

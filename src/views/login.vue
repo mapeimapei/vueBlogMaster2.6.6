@@ -51,12 +51,12 @@ export default {
 
     loginFn(){
       let obj = {...this.loginData}
-      let apiUrl = "/cms/login"
+      let apiUrl = "/user/login"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
       });
-      this.$axios.post(apiUrl, JSON.stringify(obj)).then((data) => {
+      this.$axios.post(apiUrl, obj).then((data) => {
         loadingMask.close();
         if(!!data && data.resultCode ==="20000"){
           this.setUser(data.result)

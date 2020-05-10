@@ -145,7 +145,7 @@ export default {
         "productList":[...this.multipleSelection]
       }
 
-      let apiUrl = "shop/addOrder"
+      let apiUrl = "shop/order/addOrder"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -196,7 +196,7 @@ export default {
                obj.productids.push(item.productid)
               })
             }
-            let apiUrl = "shop/deleteCart"
+            let apiUrl = "shop/cart/deleteCart"
             let loadingMask = this.$loading({
               lock: true,
               background: 'rgba(0, 0, 0, 0.5)'
@@ -237,7 +237,7 @@ export default {
 
 
     getCartList(){
-      let apiUrl = "shop/getCartList/" + this.user.id
+      let apiUrl = "shop/cart/getCartList/" + this.user.id
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

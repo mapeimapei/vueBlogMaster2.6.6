@@ -54,7 +54,7 @@ export default {
 		getSingle(){
 			if(!this.postId) return   // this.postId值为空，就跳出getSingle()，直接执行新增addSingle()。不为空，就是编辑，会执行下面的代码
 			
-			let apiUrl = "cms/getSingleById/" + this.postId
+			let apiUrl = "cms/post/getSingleById/" + this.postId
 			let loadingMask = this.$loading({
 			  lock: true,
 			  background: 'rgba(0, 0, 0, 0.5)'
@@ -89,7 +89,7 @@ export default {
 		  this.addArticle.user_id = this.user.id
 		  this.addArticle.post_id = this.postId	
 		  let obj = {...this.addArticle}
-		  let apiUrl = "cms/addSingle"
+		  let apiUrl = "cms/post/addSingle"
 		 // var formData = new FormData();
 		  //formData.append('requestJson', JSON.stringify(obj));
 		  let loadingMask = this.$loading({

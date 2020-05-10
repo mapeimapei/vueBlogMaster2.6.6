@@ -99,7 +99,7 @@ export default {
             "userid":this.user.id,
             "orderid":id
           }
-          let apiUrl = "shop/deleteOrder"
+          let apiUrl = "shop/order/deleteOrder"
           let loadingMask = this.$loading({
             lock: true,
             background: 'rgba(0, 0, 0, 0.5)'
@@ -142,7 +142,7 @@ export default {
     },
 
     getOrderList(){
-      let apiUrl = "shop/getOrderList/" + this.user.id
+      let apiUrl = "shop/order/getOrderList/" + this.user.id
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

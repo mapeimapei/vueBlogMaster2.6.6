@@ -98,7 +98,7 @@ export default {
         "productList":[row]
       }
 
-      let apiUrl = "shop/addOrder"
+      let apiUrl = "shop/order/addOrder"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -136,7 +136,7 @@ export default {
         "userid":this.user.id
       }
       console.log(obj)
-      let apiUrl = "shop/addCart"
+      let apiUrl = "shop/cart/addCart"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -167,7 +167,7 @@ export default {
 
     //获取商品列表信息
     getProducts(){
-      let apiUrl = "shop/getProducts"
+      let apiUrl = "shop/products"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

@@ -143,7 +143,7 @@ export default {
         "productid":obj.productid,
       }
 
-      let apiUrl = "shop/deleteProductInOrderDetails"
+      let apiUrl = "shop/order/deleteProductInOrderDetails"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
@@ -174,7 +174,7 @@ export default {
     },
 
     getOrdersDetailsById(){
-      let apiUrl = "shop/getOrdersDetailsById"
+      let apiUrl = "shop/order/getOrdersDetailsById"
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'

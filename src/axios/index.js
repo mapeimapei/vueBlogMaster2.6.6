@@ -2,38 +2,31 @@
 import axios from 'axios'
 import store from '@/store'
 import router from '@/router'
-import {Notification} from 'element-ui'
+import { Notification } from 'element-ui'
 import $ut from '@/constants/utils'
 axios.defaults.baseURL = $ut.api
 //设置默认请求头
 axios.defaults.headers = {
-  'XRequested-With':'XMLHttpRequest',
+	'XRequested-With': 'XMLHttpRequest',
 	'Content-Type': 'application/json;charset=UTF-8',
 	'Cache-control': 'no-cache, no-store'
 }
 axios.defaults.timeout = 600000
 //request拦截器
-
 axios.interceptors.request.use(
-  config => {
-    // if (!!store.state.token) {
-    //   config.headers.Authorization = `token ${store.state.token}`
-    // }
-    if(config.url != "/login"){
-      if (!!store.state.token ) {
-          let token = store.state.token;
-          //console.log("token request拦截器",token)
-          Object.assign(config.headers, {'access-token': token});
-      } else {
-          console.log("request 拦截器")
-          router.push("/login")
-      }
-    }
-    return config
-  },
-  err => {
-    return Promise.reject(err)
-  },
+	config => {
+		if (!!store.state.token) {
+			let authorization = "basic " + Base64.encode("token:"+store.state.token)
+			Object.assign(config.headers, { 'Authorization':authorization })
+		} else {
+			console.log("request 拦截器")
+			router.push("/login")
+		}
+		return config
+	},
+	err => {
+		return Promise.reject(err)
+	},
 )
 
 
@@ -48,27 +41,27 @@ axios.interceptors.response.use(
 			// } else {
 			// 	return response;
 			// }
-      return $ut.formatData(response.data)
+			return $ut.formatData(response.data)
 		} else if (response.status === 403 || response.status === '403') {
 			Notification.warning({
 				title: "Warning",
-				message:"无权限，请重新登录。"
+				message: "无权限，请重新登录。"
 			});
 			router.push("/login")
 		} else {
 			//非200请求抱错
-			throw Error(response.data.msg ||"服务器异常")
+			throw Error(response.data.msg || "服务器异常")
 		}
 	},
 
 	error => {
 		if (error && error.response) {
-			if (error.response.status === 403 || error.response.status === '403'){
+			if (error.response.status === 403 || error.response.status === '403') {
 				Notification.warning({
 					title: "Warning",
-					message:"无权限，请重新登录。"
+					message: "无权限，请重新登录。"
 				});
-        router.push("/login")
+				router.push("/login")
 			}
 			switch (error.response.status) {
 				case 400:
