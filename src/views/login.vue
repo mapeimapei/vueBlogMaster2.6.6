@@ -26,8 +26,8 @@ export default {
   data(){
       return {
         loginData: {
-          account: '',
-          passwd: '',
+          account: '9725029@qq.com',
+          passwd: '123456',
         },
         rules: {
           account: [

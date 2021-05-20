@@ -16,7 +16,7 @@ axios.defaults.timeout = 600000
 axios.interceptors.request.use(
 	config => {
 		if (!!store.state.token) {
-			let authorization = "basic " + Base64.encode("token:"+store.state.token)
+			let authorization = store.state.token
 			Object.assign(config.headers, { 'Authorization':authorization })
 		} else {
 			console.log("request 拦截器")

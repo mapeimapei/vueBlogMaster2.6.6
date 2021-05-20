@@ -26,7 +26,7 @@ export default {
           "user_name":"",
           "user_id":"",
           "name":"",
-          "post_id":"",
+          "id":"",
           "summary":"",
           "content":"",
         },
@@ -86,8 +86,8 @@ export default {
 		//新增
 		addSingle(){
 		  this.addArticle.user_name = this.user.name
-		  this.addArticle.user_id = this.user.id
-		  this.addArticle.post_id = this.postId	
+		  this.addArticle.user_id = this.user.user_id
+		  this.addArticle.id = this.postId	
 		  let obj = {...this.addArticle}
 		  let apiUrl = "cms/post/addSingle"
 		 // var formData = new FormData();
