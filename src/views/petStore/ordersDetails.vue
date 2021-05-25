@@ -138,7 +138,7 @@ export default {
 
     deleteRow(obj){
       let _obj = {
-        "userid":this.user.id,
+        "userid":this.user.user_id,
         "orderid":obj.orderid,
         "productid":obj.productid,
       }
@@ -182,7 +182,7 @@ export default {
 
       let obj = {
         "orderid":this.orderid,
-        "userid":this.user.id
+        "userid":this.user.user_id
       }
 
       this.$axios.post(apiUrl,obj).then((data) => {

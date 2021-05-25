@@ -7,7 +7,7 @@ const dev = process.env.NODE_ENV != 'production' ? true : false
 const utils = {
     dev:dev,
     api:dev ? "/proxyApi/api" : "/api",
-    srcUrl:dev ? "/proxyApi/static/resources/images/" : "/static/resources/images/",
+    srcUrl:dev ? "/proxyApi/resources/images/" : "/resources/images/",
     //深拷贝
     clone(object){
       return JSON.parse(JSON.stringify(object))

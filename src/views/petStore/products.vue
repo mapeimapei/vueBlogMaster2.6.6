@@ -94,7 +94,7 @@ export default {
 
     makeOrderFn(row){
       let obj = {
-        "userid":this.user.id,
+        "userid":this.user.user_id,
         "productList":[row]
       }
 
@@ -133,7 +133,7 @@ export default {
       let obj = {
         "productid":row.productid,
         "quantity":row.quantity,
-        "userid":this.user.id
+        "userid":this.user.user_id
       }
       console.log(obj)
       let apiUrl = "shop/cart/addCart"

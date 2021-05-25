@@ -141,7 +141,7 @@ export default {
 
     makeOrderFn(){
       let obj = {
-        "userid":this.user.id,
+        "userid":this.user.user_id,
         "productList":[...this.multipleSelection]
       }
 
@@ -187,7 +187,7 @@ export default {
 
             let obj = {
               "productids":[...productids],
-              "userid":this.user.id
+              "userid":this.user.user_id
             }
             //清空
             if(productids === "clear"){
@@ -237,7 +237,7 @@ export default {
 
 
     getCartList(){
-      let apiUrl = "shop/cart/getCartList/" + this.user.id
+      let apiUrl = "shop/cart/getCartList/" + this.user.user_id
       let loadingMask = this.$loading({
         lock: true,
         background: 'rgba(0, 0, 0, 0.5)'
