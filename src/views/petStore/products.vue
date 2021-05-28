@@ -95,7 +95,8 @@ export default {
     makeOrderFn(row){
       let obj = {
         "userid":this.user.user_id,
-        "productList":[row]
+        "productList":[row],
+        "fast":"1"
       }
 
       let apiUrl = "shop/order/addOrder"
