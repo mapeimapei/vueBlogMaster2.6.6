@@ -35,7 +35,7 @@
           border
           style="width: 100%">
           <el-table-column
-            prop="cname"
+            prop="products.cname"
             label="商品名称">
           </el-table-column>
           <el-table-column
@@ -45,7 +45,7 @@
           </el-table-column>
 
           <el-table-column
-            prop="listprice"
+            prop="products.listprice"
             label="价格"
             width="180">
           </el-table-column>
@@ -59,7 +59,7 @@
           <el-table-column
             label="总价(￥)">
             <template slot-scope="scope">
-              {{scope.row.listprice * scope.row.quantity}}
+              {{scope.row.products.listprice * scope.row.quantity}}
             </template>
           </el-table-column>
 
@@ -139,7 +139,7 @@ export default {
     deleteRow(obj){
       let _obj = {
         "userid":this.user.user_id,
-        "orderid":obj.orderid,
+        "orderid":this.orderid,
         "productid":obj.productid,
       }
 
@@ -189,7 +189,7 @@ export default {
         loadingMask.close();
         if(!!data && data.resultCode ==="20000"){
 
-            this.orderList= data.result.orderlist
+            this.orderList= data.result.orderList
             this.amount= data.result.amount
             this.status= this.orderList.length ? this.orderList[0].status : null
         }else{
