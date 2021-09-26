@@ -1,4 +1,4 @@
-# awesome-flask-webapp的后台管理web项目
+# springBoot_myBatis_shiro的前端部分
 
 > A Vue.js project
 

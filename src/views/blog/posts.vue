@@ -28,8 +28,8 @@
       label="操作"
       width="200">
       <template slot-scope="scope">
-        <el-button type="text" @click="deleFn(scope.row.post_id)">删除</el-button>
-        <el-button type="text" @click="editFn(scope.row.post_id)">编辑</el-button>
+        <el-button type="text" @click="deleFn(scope.row.id)">删除</el-button>
+        <el-button type="text" @click="editFn(scope.row.id)">编辑</el-button>
       </template>
     </el-table-column>
   </el-table>
