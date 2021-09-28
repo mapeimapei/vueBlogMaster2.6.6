@@ -11,17 +11,36 @@ axios.defaults.headers = {
 	'Content-Type': 'application/json;charset=UTF-8',
 	'Cache-control': 'no-cache, no-store'
 }
+//设置超时时间
 axios.defaults.timeout = 600000
-//request拦截器
+
+//上传文件api
+axios.upload = (url,formData,config)=>{
+	config.headers = {'Content-Type':'multipart/form-data'}
+	return axios.post(url,formData,config)
+}
+
+//request请求拦截器
 axios.interceptors.request.use(
 	config => {
 		if (!!store.state.token) {
 			let authorization = store.state.token
-			Object.assign(config.headers, { 'Authorization':authorization })
+			Object.assign(config.headers, { 'Authorization': authorization })
 		} else {
 			console.log("request 拦截器")
 			router.push("/login")
 		}
+
+		if (config.method == "get") {
+			//每个请求url后边加上时间戳，解决请求缓存的问题
+			config.params = {
+				t: Date.parse(new Date()) / 1000,
+				...config.params
+			}
+			//对url里面的参数进行编码，解决IE浏览器get请求中文字符参数乱码，从而导致接口响应为400的问题
+			config.url = encodeURI(config.url)
+		}
+
 		return config
 	},
 	err => {
@@ -29,8 +48,7 @@ axios.interceptors.request.use(
 	},
 )
 
-
-// http response 拦截器
+//response响应拦截器
 axios.interceptors.response.use(
 	response => {
 		//在这里你可以判断后台返回数据携带的请求码
@@ -41,6 +59,11 @@ axios.interceptors.response.use(
 			// } else {
 			// 	return response;
 			// }
+
+			//二进制字节流
+			if (response.headers["content-type"] === "application/octet-stream;charset=utf-8") {
+				return response
+			}
 			return $ut.formatData(response.data)
 		} else if (response.status === 403 || response.status === '403') {
 			Notification.warning({

@@ -215,7 +215,79 @@ const utils = {
 		}else{
 			return []
 		}
-	}
+	},
+
+  //判断字符是否为汉字
+  isChinese(str){
+    return /[\u4e00-\u9fa5]/.test(str)
+  },
+
+  //转为unicode编码（只转中文部分）
+  toUnicode(str){
+    if(!str) return;
+    let unicode = ""
+    for(let i=0; i<str.length; i++){
+      let temp = str.charAt(i)
+      if(this.isChinese(temp)){
+        unicode += '\\u'+temp.charCodeAt(0).toString(16)
+      }else{
+        unicode +=temp
+      }
+    }
+    return unicode
+  },
+
+  // 特殊字符转义
+  filter(str){
+    str += '';
+    str = str.replace(/%/g,"%25")
+    str = str.replace(/\+/g,"%2B")
+    str = str.replace(/ /g,"%20")
+    str = str.replace(/\//g,"%2F")
+    str = str.replace(/\?/g,"%3F")
+    str = str.replace(/&/g,"%26")
+    str = str.replace(/\=/g,"%3D")
+    str = str.replace(/#/g,"%23")
+    return str;
+  },
+
+  //
+  formatObjToParamStr(paramObj){
+    let sdata = []
+    for(let attr in paramObj){
+      let param = this.filter(paramObj[attr])
+      sdata.push(`${attr}=${param}`)
+    }
+    return sdata.join('&')
+  },
+
+  //实现浏览器copy内容到剪切板的功能
+  bomCopy(value){
+    return new Promise((resolve,reject)=>{
+      let oInput = document.createElement('input');
+      oInput.value = value
+      document.body.appendChild(oInput)
+      try{
+        oInput.select() //选择对象
+        document.execCommand("Copy") //执行浏览器复制命令
+        resolve()
+      }catch(err){
+        reject(err)
+      }finally{
+        oInput.className = 'oInput';
+        oInput.style.display = 'none'
+        document.body.removeChild(oInput)
+      }
+    })
+  },
+
+
+
+
+
+
+
+
 
 
 }
