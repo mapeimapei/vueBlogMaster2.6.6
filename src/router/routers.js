@@ -1,6 +1,7 @@
 import template from '@/views/template.vue'
 import sidebar_blog from '@/components/sidebar_blog.vue'
 import sidebar_petstore from '@/components/sidebar_petstore.vue'
+import sidebar_practice from '@/components/sidebar_practice.vue'
 
 const routers = [
 
@@ -12,6 +13,45 @@ const routers = [
         name:"login",
         component: (resolve) => require(['@/views/login.vue'], resolve)
     },
+
+
+    {
+      path: '/practice',
+      redirect: { name: 'practice1' },
+      meta: {
+          title: '实践',
+          requireAuth: true,
+      },
+      name:"practice",
+      component: template,
+      children:[
+        {
+          path: 'practice1',
+          meta: {
+              title: '实践一',
+              requireAuth: true,
+          },
+          name:"practice1",
+          components: {
+            default: (resolve) => require(['@/views/practice/practice1.vue'], resolve),
+            sidebar: sidebar_practice
+          }
+        },
+        {
+          path: 'practice2',
+          meta: {
+              title: '实践二',
+              requireAuth: true,
+          },
+          name:"practice2",
+          components: {
+            default: (resolve) => require(['@/views/practice/practice2.vue'], resolve),
+            sidebar: sidebar_practice
+          }
+        },
+      ]
+    },
+
     {
         path: '/blog',
         redirect: { name: 'posts' },

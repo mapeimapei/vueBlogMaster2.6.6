@@ -6,6 +6,7 @@
         <li><a href="/">网站首页</a></li>
 				<li><router-link to="/blog">博客</router-link></li>
 				<li><router-link to="/petStore">宠物商店</router-link></li>
+				<li><router-link to="/practice">实践</router-link></li>
 			</ul>
 		</nav>
 		<div class="personalCenter" v-if="user">

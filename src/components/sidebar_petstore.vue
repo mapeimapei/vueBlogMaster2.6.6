@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-  name: "cSidebar",
+  name: "cSidebar2",
   props: [],
   data() {
     return {
