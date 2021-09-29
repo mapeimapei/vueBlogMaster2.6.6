@@ -10,26 +10,21 @@ import store from '@/store'
 import router from '@/router'
 import axios from '@/axios'
 Vue.prototype.$axios = axios
-import api from '@/constants/api'
-Vue.prototype.$api = api
-import http from '@/constants/http'
+import http from '@/axios/http'
 Vue.prototype.$http = http
+import api from '@/axios/api'
+Vue.prototype.$api = api
 import ElementUI from 'element-ui'
 import moment from 'moment'
 Vue.prototype.$moment = moment
-
 import $ from 'jquery'
 import '@/assets/css/global.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/main.css'
-
 const Base64 = require('js-base64').Base64
-
 if(!!ut.dev){
   require('@/constants/mock.js')
 }
-
-
 Vue.use(VueBus);
 Vue.use(ElementUI);
 Vue.config.productionTip = false
