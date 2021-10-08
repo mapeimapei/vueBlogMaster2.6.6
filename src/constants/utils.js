@@ -4,7 +4,7 @@
 // process.env.NODE_ENV == 'debug'
 // process.env.NODE_ENV == 'development'
 const dev = process.env.NODE_ENV != 'production' ? true : false
-const TYPE_ARRAY =  [
+const TYPE_ARRAY = [
   "Undefined",
   "Null",
   "Boolean",
@@ -15,14 +15,14 @@ const TYPE_ARRAY =  [
   "Array",
   "Object"
 ]
-const getDataType = ()=> {
-	const result = {}
-	TYPE_ARRAY.forEach(item =>{
-		result[`is${item}`] = value =>{
-			return Object.prototype.toString.call(value) === `[object ${item}]`
-		}
-	})
-	return result 
+const getDataType = () => {
+  const result = {}
+  TYPE_ARRAY.forEach(item => {
+    result[`is${item}`] = value => {
+      return Object.prototype.toString.call(value) === `[object ${item}]`
+    }
+  })
+  return result
 }
 
 const utils = {
@@ -192,69 +192,69 @@ const utils = {
   ...getDataType(),
 
   //判断字符长度
-  lengthOf(str){
-    if(!str) return 0
+  lengthOf(str) {
+    if (!str) return 0
     const length = str.length
     let count = 0
-    for (let i=0;i<length; i++){
-      if(str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255){
+    for (let i = 0; i < length; i++) {
+      if (str.charCodeAt(i) < 0 || str.charCodeAt(i) > 255) {
         count += 2 //汉子2个字符
-      }else{
-        count +=1
+      } else {
+        count += 1
       }
     }
     return count
   },
 
   //抽取数组里obj的key,组成arr，unique是否去重
-	pluck(array,key,unique){
-		if(Array.isArray(array)){
-			let brr = array.map(item => item?item[key]:undefined )
-			if(!!unique) return Array.from(new Set(brr))
-			return brr
-		}else{
-			return []
-		}
-	},
+  pluck(array, key, unique) {
+    if (Array.isArray(array)) {
+      let brr = array.map(item => item ? item[key] : undefined)
+      if (!!unique) return Array.from(new Set(brr))
+      return brr
+    } else {
+      return []
+    }
+  },
 
   //判断字符是否为汉字
-  isChinese(str){
+  isChinese(str) {
     return /[\u4e00-\u9fa5]/.test(str)
   },
 
   //转为unicode编码（只转中文部分）
-  toUnicode(str){
-    if(!str) return;
+  toUnicode(str) {
+    if (!str) return;
     let unicode = ""
-    for(let i=0; i<str.length; i++){
+    for (let i = 0; i < str.length; i++) {
       let temp = str.charAt(i)
-      if(this.isChinese(temp)){
-        unicode += '\\u'+temp.charCodeAt(0).toString(16)
-      }else{
-        unicode +=temp
+      if (this.isChinese(temp)) {
+        unicode += '\\u' + temp.charCodeAt(0).toString(16)
+      } else {
+        unicode += temp
       }
     }
     return unicode
   },
 
   // 特殊字符转义
-  filter(str){
+  filter(str) {
     str += '';
-    str = str.replace(/%/g,"%25")
-    str = str.replace(/\+/g,"%2B")
-    str = str.replace(/ /g,"%20")
-    str = str.replace(/\//g,"%2F")
-    str = str.replace(/\?/g,"%3F")
-    str = str.replace(/&/g,"%26")
-    str = str.replace(/\=/g,"%3D")
-    str = str.replace(/#/g,"%23")
+    str = str.replace(/%/g, "%25")
+    str = str.replace(/\+/g, "%2B")
+    str = str.replace(/ /g, "%20")
+    str = str.replace(/\//g, "%2F")
+    str = str.replace(/\?/g, "%3F")
+    str = str.replace(/&/g, "%26")
+    str = str.replace(/\=/g, "%3D")
+    str = str.replace(/#/g, "%23")
     return str;
   },
 
   //
-  formatObjToParamStr(paramObj){
+  formatObjToParamStr(paramObj) {
     let sdata = []
-    for(let attr in paramObj){
+    for (let attr in paramObj) {
       let param = this.filter(paramObj[attr])
       sdata.push(`${attr}=${param}`)
     }
@@ -262,18 +262,18 @@ const utils = {
   },
 
   //实现浏览器copy内容到剪切板的功能
-  bomCopy(value){
-    return new Promise((resolve,reject)=>{
+  bomCopy(value) {
+    return new Promise((resolve, reject) => {
       let oInput = document.createElement('input');
       oInput.value = value
       document.body.appendChild(oInput)
-      try{
+      try {
         oInput.select() //选择对象
         document.execCommand("Copy") //执行浏览器复制命令
         resolve()
-      }catch(err){
+      } catch (err) {
         reject(err)
-      }finally{
+      } finally {
         oInput.className = 'oInput';
         oInput.style.display = 'none'
         document.body.removeChild(oInput)
@@ -281,14 +281,75 @@ const utils = {
     })
   },
 
+  // 通过document.cookie 来查找cookie值
+  // utils.cookie("BA_HECTOR")
+  cookie(name) {
+    return `; ${document.cookie}`.split(`; ${name}=`).pop().split(';').shift()
+  },
 
+  // 清除全部Cookie
+  clearCookies() {
+    document.cookie.split(';').forEach(cookie => document.cookie = cookie.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`))
+  },
 
+  // 颜色RGB转十六进制
+  // rgbToHex(0, 51, 255);  // Result: #0033ff
+  rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
+  },
 
+  // 使用以下代码段检查给定日期是否有效
+  isDateValid(...val) {
+    return !Number.isNaN(new Date(...val).valueOf())
+  },
 
+  // 查找日期位于一年中的第几天
+  dayOfYear(date) {
+    return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24)
+  },
 
+  // 英文字符串首字母大写
+  capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  },
 
+  // 生成随机十六进制颜色
+  randomHex() {
+    return `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")}`;
+  },
 
+  // 从 URL 获取查询参数
+  getParameters(url) {
+    url = JSON.parse(
+      '{"' +
+      decodeURI(url.split("?")[1])
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"') +
+      '"}'
+    );
+    return url;
+  },
 
+  // 求数字的平均值
+  average(...args) {
+    return args.reduce((a, b) => a + b) / args.length
+  },
+
+  // 翻转字符串
+  reverseStr(str) {
+    return str.split('').reverse().join('')
+  },
+
+  // 打乱数组
+  shuffleArray(arr) {
+    return arr.sort(() => 0.5 - Math.random());
+  },
+
+  // 检查用户的设备是否处于暗模式
+  isDarkMode() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  }
 
 }
 
