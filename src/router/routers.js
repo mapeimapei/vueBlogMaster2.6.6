@@ -1,5 +1,6 @@
 import template from '@/views/template.vue'
 import sidebar_blog from '@/components/sidebar_blog.vue'
+import sidebar_demo from '@/components/sidebar_demo.vue'
 import sidebar_petstore from '@/components/sidebar_petstore.vue'
 
 const routers = [
@@ -11,6 +12,44 @@ const routers = [
         },
         name:"login",
         component: (resolve) => require(['@/views/login.vue'], resolve)
+    },
+
+    {
+      path: '/demo',
+      redirect: { name: 'demo1' },
+      meta: {
+          title: 'demo',
+      },
+      name:"demo",
+      component: template,
+      children:[
+        {
+          path: 'demo1',
+          meta: {
+              title: 'demo1',
+          },
+          name:"demo1",
+          components: {
+            default: (resolve) => require(['@/views/demo/demo1.vue'], resolve),
+            sidebar: sidebar_demo
+          }
+        },
+
+        {
+          path: 'demo2',
+          meta: {
+              title: 'demo2',
+          },
+          name:"demo2",
+          components: {
+            default: (resolve) => require(['@/views/demo/demo2.vue'], resolve),
+            sidebar: sidebar_demo
+          }
+        },
+
+
+      ]
+
     },
     {
         path: '/blog',

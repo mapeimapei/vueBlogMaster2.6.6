@@ -170,3 +170,15 @@ body { font-family:"Microsoft YaHei", Helvetica, STHeiTi; line-height:1.5; color
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
+
+.formBox input::-webkit-outer-spin-button,
+.formBox input::-webkit-inner-spin-button {
+-webkit-appearance: none;
+}
+
+.formBox input[type="number"] {
+-moz-appearance: textfield;
+}
+
+.formBox .submitBox .el-form-item__content{ margin-left: 0 !important;}
