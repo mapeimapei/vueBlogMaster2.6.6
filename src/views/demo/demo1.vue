@@ -7,7 +7,7 @@
       label-width="136px" 
       label-position="right"
     >
-      <el-row :gutter="20" v-for="(rowName,index) in Object.keys(allParams)" :key="'rowName'+index">
+      <el-row class="mb20" :gutter="20" v-for="(rowName,index) in Object.keys(allParams)" :key="'rowName'+index">
         <el-col :span="24">
           <h3 class="title">
             {{allParams[rowName].title}}：
@@ -25,7 +25,7 @@
               type="primary" 
               icon="el-icon-minus" 
               size="mini"
-              @click="removeData(rowName,index)"
+              @click="removeData(rowName)"
             ></el-button>
           </h3>
         </el-col>
@@ -90,7 +90,7 @@
       </el-row>
 
       <el-form-item class="submitBox">
-        <el-button type="primary" @click="onSubmit">导出数据</el-button>
+        <el-button type="primary" :loading="loading" @click="onSubmit">导出数据</el-button>
         <!-- <el-button type="primary" @click="replaceFn">replaceFn</el-button> -->
       </el-form-item>
     </el-form>
@@ -109,6 +109,7 @@ export default {
       allParams:null,
       allContent:"",
       setDefaultValDone:false,
+      loading:false
     }
   },
 
@@ -121,10 +122,15 @@ export default {
       FileSaver.saveAs(blob, fileName)
     },
 
+
     // 导出
-    async onSubmit(){
-      await this.replaceParmas()
-      this.writeLocal()
+    onSubmit(){
+      this.loading = true
+      setTimeout(async()=>{
+        await this.replaceParmas()
+        await this.writeLocal()
+        this.loading = false
+      })
     },
 
     // 替换mod类的数据
@@ -223,7 +229,7 @@ export default {
     },
 
     // 删除按钮
-    removeData(key,index){
+    removeData(key){
       this.allParams[key].data.pop()
     },
 
@@ -298,5 +304,7 @@ export default {
 
 .addRowCls{ margin-top: 10px; padding-top: 10px; background-color: #f1f1f1;}
 .btnCls{padding: 7px;}
+.mt20 { margin-top: 20px;}
+.mb20 { margin-bottom: 20px;}
 </style>
 
